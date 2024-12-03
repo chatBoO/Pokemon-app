@@ -1,12 +1,22 @@
 import { Link } from "react-router-dom";
 
-const Card = ({ id, name, img, types, hp, pre, next, generation }) => {
+const Card = ({ id, name, img, types, hp, pre, generation }) => {
     return (
         <div className="pokemon_card">
             <div className="title_card">
                 <p>N° {id}</p>
                 <p>{name}</p>
-                <p style={{color: "brown", fontSize: "0.7rem", border: "0.5px solid brown", borderRadius: "35%", padding: "5px"}}>{!pre ? "Base" : next ? "Niveau 1" : "Niveau 2"}</p>
+                <p
+                    style={{
+                        color: "brown",
+                        fontSize: "0.7rem",
+                        border: "0.5px solid brown",
+                        borderRadius: "35%",
+                        padding: "5px",
+                    }}
+                >
+                    {!pre ? "Base" : pre.length < 2 ? "Niveau 1" : "Niveau 2"}
+                </p>
             </div>
             <div className="infos-container">
                 <div className="pokemon_img">
@@ -26,7 +36,7 @@ const Card = ({ id, name, img, types, hp, pre, next, generation }) => {
                         {types && types.length > 0 ? (
                             types.map((type, index) => (
                                 <li key={index} className="infos">
-                                    {type.name}
+                                    {type.name} <img src={type.image} alt="image type" />
                                 </li>
                             ))
                         ) : (

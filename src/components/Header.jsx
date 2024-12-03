@@ -1,6 +1,7 @@
+import React from "react";
 import logo from "../assets/logo.png";
 
-const Header = () => {
+const Header = ({ onSearch }) => {
     return (
         <header>
             <div className="header-container">
@@ -11,9 +12,12 @@ const Header = () => {
                         Bienvenue sur ton pokédex personnel Kylian !
                     </div>
                 </div>
-                <div>
-                    <input type="text" placeholder="Rechercher un pokemon" />
-                    <button>Rechercher</button>
+                <div className="searchBar">
+                    <input
+                        type="text"
+                        placeholder="Rechercher un pokemon"
+                        onChange={(e) => onSearch(e.target.value.toLowerCase())}
+                    />
                 </div>
             </div>
         </header>
