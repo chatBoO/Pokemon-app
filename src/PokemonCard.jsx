@@ -4,7 +4,7 @@ import loadingGif from "./assets/loader.gif";
 
 const PokemonCard = ({ pokemonList }) => {
     const { id } = useParams();
-    const [activeType, setActiveType] = useState(null); // Déclarez tous les Hooks en haut
+    const [activeType, setActiveType] = useState("Normal"); // Déclarez tous les Hooks en haut
 
     const currentPokemon = pokemonList.find(
         (pokemon) => pokemon.pokedex_id.toString() === id
@@ -22,10 +22,13 @@ const PokemonCard = ({ pokemonList }) => {
     const name = currentPokemon.name.fr;
     const pre = currentPokemon.evolution?.pre;
     const pv = currentPokemon.stats?.hp;
-    const types = currentPokemon.types;
+    const energiesTypes = currentPokemon.types;
     const imagePokemonRegular = currentPokemon.sprites?.regular;
     const imagePokemonShiny = currentPokemon.sprites?.shiny;
-    const imagePokemonGmax = currentPokemon.sprites?.gmax;
+    const imagePokemonGmax = currentPokemon.sprites?.gmax?.regular;
+    const categorie = currentPokemon.category;
+    const taille = currentPokemon.height;
+    const poids = currentPokemon.weight;
     return (
         <main>
             <div className="pokemon_card-container">
@@ -49,7 +52,7 @@ const PokemonCard = ({ pokemonList }) => {
                     <p>{name}</p>
                     <div className="pvTypes">
                         <span style={{ fontSize: "0.8rem" }}>pv</span> {pv}
-                        {types?.map((type, index) => (
+                        {energiesTypes?.map((type, index) => (
                             <img
                                 src={type.image}
                                 alt="imgage type"
@@ -68,7 +71,7 @@ const PokemonCard = ({ pokemonList }) => {
                                 style={{
                                     backgroundColor:
                                         activeType === type
-                                            ? "grey"
+                                            ? "rgb(138, 127, 127, 0.8)"
                                             : "initial",
                                     cursor: "pointer",
                                 }}
@@ -95,7 +98,15 @@ const PokemonCard = ({ pokemonList }) => {
                                 <p>Pas de version Gmax</p>
                             )
                         ) : null}
-                        <figcaption>n°{pokedex_id}</figcaption>
+                        <figcaption>
+                            n°{pokedex_id}
+                            {" - "}
+                            {categorie}
+                            {" - "}
+                            Taille :{taille}
+                            {" - "}
+                            Poids :{poids}
+                        </figcaption>
                     </figure>
                 </div>
             </div>
