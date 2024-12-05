@@ -60,6 +60,7 @@ body {
         main {
             background-color: rgb(221, 220, 231);
             padding: 10px 30px;
+            min-height: 100vh;
 
             .cards-container {
                 display: grid;
@@ -71,6 +72,11 @@ body {
                 padding: 20px 0px;
                 border-radius: 3px;
                 place-items: center; /* Centre les cartes horizontalement et verticalement */
+
+                a {
+                    text-decoration: none;
+                    color: initial;
+                }
 
                 .pokemon_card {
                     background-color: #fff;
@@ -143,6 +149,20 @@ body {
                         }
                     }
                 }
+            }
+        }
+
+        .pokemon_card-container {
+            margin: auto;
+            border: 8px solid orange;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+            background-color: rgb(238, 246, 241);
+
+            .title_card {
+                display: flex;
+                justify-content: space-between;;
             }
         }
     }

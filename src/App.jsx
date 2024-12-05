@@ -1,38 +1,12 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Card from "./components/Card";
 import Pagination from "./components/Pagination";
 import loadingGif from "./assets/loader.gif";
 
-function App({ userSearch }) {
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [pokemonList, setPokemonList] = useState([]);
+function App({ userSearch, loading, error, pokemonList }) {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(20);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(
-                    "https://tyradex.app/api/v1/pokemon"
-                );
-                if (!response.ok) {
-                    throw new Error(
-                        "Erreur lors de la récupération des données"
-                    );
-                }
-                const result = await response.json();
-                setPokemonList(result);
-            } catch (error) {
-                setError(error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, []);
 
     if (loading)
         return (
@@ -78,7 +52,7 @@ function App({ userSearch }) {
                 {currentItems.map((pokemon) => (
                     <Card
                         key={pokemon.pokedex_id}
-                        id={pokemon.pokedex_id || "?"}
+                        id={pokemon.pokedex_id || 0}
                         name={pokemon.name?.fr || "Nom inconnu"}
                         img={
                             pokemon.sprites?.regular || "default-image-url.jpg"
