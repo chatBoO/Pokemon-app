@@ -1,149 +1,155 @@
 body {
     width: 100%;
     min-height: 100vh;
-    margin: auto;
+    margin: 0; /* Supprime les marges pour éviter les décalages */
     object-fit: cover;
-    background-color: rgb(141, 223, 131);
+    background-image: url("../src/assets/background-body.avif");
+    background-position: center; /* Centrage du fond */
+    background-repeat: no-repeat;
+    background-size: cover; /* Ajuste l'image pour couvrir tout l'écran */
+    background-attachment: fixed; /* Fixe l'image de fond */
 
     .body-container {
-        max-width: 1200px;
+        max-width: 900px;
         margin: auto;
+    }
+    header {
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f30808;
+            color: initial;
+            text-decoration: none;
 
-        header {
-            .header-container {
+            .logo-container {
                 display: flex;
-                justify-content: space-between;
+                justify-content: center;
                 align-items: center;
-                padding: 10px;
-                background-color: #f30808;
+                max-width: 60%;
 
-                .logo-container {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    max-width: 60%;
-
-                    img {
-                        max-width: 100px;
-                    }
-
-                    .title-container {
-                        margin: 0px 0px 0px 20px;
-
-                        h1 {
-                            margin: 0px 0px 5px;
-                        }
-                    }
+                img {
+                    max-width: 100px;
                 }
 
-                .searchBar {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                .title-container {
+                    margin: 0px 0px 0px 20px;
 
-                    input {
-                        font-size: 1rem;
+                    h1 {
+                        margin: 0px 0px 5px;
                     }
                 }
             }
         }
 
-        .loading-gif {
+        .searchBar {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0 auto;
-            width: 100%;
-            height: 100vh;
+
+            input {
+                font-size: 1rem;
+            }
         }
+    }
 
-        main {
-            background-color: rgb(221, 220, 231);
-            padding: 20px 30px;
-            min-height: 100vh;
+    .loading-gif {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        width: 100%;
+        height: 100vh;
+    }
 
-            .cards-container {
-                display: grid;
-                grid-template-columns: repeat(
-                    auto-fit,
-                    minmax(200px, 200px)
-                ); /* Assure une largeur minimale pour chaque carte */
-                gap: 30px;
-                padding: 20px 0px;
-                border-radius: 3px;
-                place-items: center; /* Centre les cartes horizontalement et verticalement */
+    main {
+        padding: 20px 30px;
+        min-height: 100vh;
+        background-color: #ffffff;
+        overflow-y: auto; /* Permet le défilement vertical */
 
-                a {
-                    text-decoration: none;
-                    color: initial;
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                250px
+            ); /* Assure une largeur minimale pour chaque carte */
+            gap: 20px;
+            padding: 20px 0px;
+            border-radius: 3px;
+            place-items: center;
+
+            a {
+                text-decoration: none;
+                color: initial;
+            }
+
+            .pokemon_card {
+                background-color: #fff;
+                border-radius: 10px;
+                width: 100%;
+                border: 1px solid black;
+                box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.4);
+
+                .title_card {
+                    display: flex;
+                    justify-content: space-evenly;
+                    padding: 10px;
+                    border-bottom: 1px solid black;
+
+                    p {
+                        margin: 0;
+                    }
                 }
 
-                .pokemon_card {
-                    background-color: #fff;
-                    border-radius: 10px;
-                    width: 100%;
-                    border: 1px solid black;
-                    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.4);
+                .infos-container {
+                    display: flex;
 
-                    .title_card {
+                    .pokemon_img {
                         display: flex;
-                        justify-content: space-evenly;
-                        padding: 10px;
-                        border-bottom: 1px solid black;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: #a6e398;
+                        border-radius: 0px 0px 0px 10px;
 
-                        p {
-                            margin: 0;
+                        img {
+                            width: 100px;
+                            height: 100px;
                         }
                     }
 
-                    .infos-container {
+                    .infos_card {
                         display: flex;
+                        flex-direction: column;
+                        border-left: 0.5px solid black;
+                        padding: 0px 0px 0px 5px;
 
-                        .pokemon_img {
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            background-color: #a6e398;
-                            border-radius: 0px 0px 0px 10px;
-
-                            img {
-                                width: 100px;
-                                height: 100px;
-                            }
+                        h4 {
+                            font-size: 0.9rem;
+                            margin: 5px 0px 0px 0px;
+                            text-decoration: underline;
                         }
 
-                        .infos_card {
-                            display: flex;
-                            flex-direction: column;
-                            border-left: 0.5px solid black;
-                            padding: 0px 0px 0px 5px;
+                        .informations_title {
+                            font-size: 0.8rem;
+                            font-weight: bold;
+                            padding-top: 5px;
+                        }
 
-                            h4 {
-                                font-size: 0.9rem;
-                                margin: 5px 0px 0px 0px;
-                                text-decoration: underline;
-                            }
+                        ul {
+                            margin: 0px;
+                            padding: 5px 0px 0px 20px;
 
-                            .informations_title {
-                                font-size: 0.8rem;
-                                font-weight: bold;
-                                padding-top: 5px;
-                            }
+                            .infos {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                width: 75%;
+                                font-size: 0.7rem;
 
-                            ul {
-                                margin: 0px;
-                                padding: 5px 0px 0px 20px;
-
-                                .infos {
-                                    display: flex;
-                                    justify-content: space-between;
-                                    align-items: center;
-                                    width: 75%;
-                                    font-size: 0.7rem;
-
-                                    img {
-                                        width: 10px;
-                                    }
+                                img {
+                                    width: 10px;
                                 }
                             }
                         }
@@ -151,80 +157,205 @@ body {
                 }
             }
         }
+    }
 
-        .pokemon_card-container {
-            margin: auto;
-            border: 8px solid orange;
-            border-radius: 10px;
-            width: 50%;
-            max-width: 800px;
-            /* background-image: url("../src/assets/background-card.webp"); */
+    .pokemon_card-container {
+        width: 50%;
+        margin: auto;
+        border-radius: 10px;
+        border: 8px solid orange;
+        background-image: url("../src/assets/background-body.avif");
 
-            .title_card-container {
+        .card-container_title {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 20px 0px;
+            margin: 0px 0px 20px 0px;
+            border-bottom: 1px solid black;
+
+            p {
+                margin: 0px;
+                padding: 0px 5px;
+                background-color: #fff;
+            }
+
+            .pvTypes {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #fff;
+                padding: 0px 5px;
+
+                img {
+                    width: 20px;
+                    height: 20px;
+                    margin-left: 5px;
+                    border-radius: 50%;
+                }
+            }
+        }
+
+        .img_pokemon-container {
+            .img_type-container {
                 display: flex;
                 justify-content: space-between;
-                font-size: 1.5rem;
-                font-weight: bold;
-                padding: 20px;
-                margin: 0px 0px 20px 0px;
-                border-bottom: 1px solid black;
-                background-color: #fff;
+                align-items: center;
+                margin: auto;
+                width: 60.5%;
+                height: 40px;
 
-                p {
-                    margin: 0px;
-                }
-
-                .pvTypes {
+                .img_type {
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    flex: 1;
+                    width: 100%;
+                    height: 100%;
 
-                    img {
-                        width: 20px;
-                        height: 20px;
-                        margin-left: 5px;
-                        border-radius: 50%;
+                    &:hover {
+                        background-color: #fff;
                     }
                 }
             }
 
-            .img_pokemon-container {
-                .img_type-container {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    margin: auto;
-                    width: 60.5%;
-                    height: 40px;
+            .img_pokemon {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin: 0px auto 10px;
+                width: 60%;
 
-                    .img_type {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        flex: 1;
-                        width: 100%;
-                        height: 100%;
-                    }
+                img {
+                    width: 100%;
+                    border: thick double #5896e7;
+                    background-color: #b1e1e3e0;
                 }
 
-                .img_pokemon {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    margin: auto;
-                    width: 60%;
+                figcaption {
+                    width: 150%;
+                    font-size: 0.8rem;
+                    border-bottom: 1px solid #b1e1e3e0;
+                    text-align: center;
+                }
+            }
+        }
+
+        .bloc_stats-container {
+            background-color: #b6cce8;
+            padding: 10px 5px;
+
+            .stats_title-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+                cursor: pointer; /* Indique que c'est cliquable */
+
+                h4 {
+                    margin: 0px;
+                }
+            }
+            .chevron {
+                transition: transform 0.8s ease; /* Animation de rotation */
+            }
+
+            .chevron.rotated {
+                transform: rotate(180deg); /* Rotation de 180° */
+            }
+
+            .stats-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                max-height: 0; /* Hauteur initiale fermée */
+                overflow: hidden; /* Cache le contenu lorsque fermé */
+                transition: max-height 1s ease;
+                padding: 0;
+            }
+            .stats-container.open {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                max-height: 200px; /* Ajustez cette valeur selon le contenu attendu */
+            }
+            .bloc {
+                display: flex;
+                flex: 1;
+                flex-direction: column;
+            }
+        }
+
+        .bloc_resistances-container {
+            background-color: #cedef4;
+            padding: 10px 5px;
+
+            .resistances_title-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+                cursor: pointer; /* Indique que c'est cliquable */
+
+                h4 {
+                    margin: 0px;
+                }
+            }
+            .chevron {
+                transition: transform 0.8s ease; /* Animation de rotation */
+            }
+
+            .chevron.rotated {
+                transform: rotate(180deg); /* Rotation de 180° */
+            }
+
+            .resistances-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                max-height: 0; /* Hauteur initiale fermée */
+                overflow: hidden; /* Cache le contenu lorsque fermé */
+                transition: max-height 1s ease;
+                padding: 0;
+            }
+            .resistances-container.open {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                max-height: 500px; /* Ajustez cette valeur selon le contenu attendu */
+            }
+
+            .bloc {
+                display: flex;
+                flex-wrap: wrap;
+
+                p {
+                    margin: 0px 8px 5px 0px;
 
                     img {
-                        width: 100%;
-                        border: 3px solid rgb(138, 127, 127);
-                        background-image: url("../src/assets/background-img.jpg");
-                    }
-
-                    figcaption {
-                        font-size: 0.8rem;
+                        width: 15px;
+                        margin-right: 5px;
                     }
                 }
+            }
+        }
+
+        .talents-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 50%;
+            color: red;
+            border-top: 1px solid red;
+            border-bottom: 1px solid red;
+            padding: 5px;
+            margin: 20px auto;
+
+            h4,
+            p {
+                margin: 0px;
             }
         }
     }

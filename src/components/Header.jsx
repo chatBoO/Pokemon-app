@@ -1,12 +1,15 @@
 import React from "react";
 import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 
 const Header = ({ onSearch }) => {
     return (
         <header>
             <div className="header-container">
                 <div className="logo-container">
-                    <img src={logo} alt="logo bulbizarre" />
+                    <Link to={"/"}>
+                        <img src={logo} alt="logo bulbizarre" />
+                    </Link>
                     <div className="title-container">
                         <h1>Poke-App</h1>
                         Bienvenue sur ton pokédex personnel Kylian !
