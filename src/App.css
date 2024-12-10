@@ -404,3 +404,162 @@ body {
         }
     }
 }
+
+/* Media query pour les écrans entre 450px et 900px */
+@media (min-width: 450px) and (max-width: 900px) {
+    /* Ajustement du conteneur principal */
+    .body-container {
+        max-width: 100%; /* S'adapte à la largeur de l'écran */
+        padding: 10px; /* Réduction des marges */
+    }
+
+    /* Header */
+    header .header-container {
+        flex-direction: row; /* Maintient une disposition en ligne */
+        padding: 15px; /* Augmente légèrement le padding */
+        gap: 10px;
+    }
+
+    .logo-container img {
+        max-width: 80px; /* Réduction de la taille du logo */
+    }
+
+    .title-container h1 {
+        font-size: 1.5rem; /* Ajuste la taille du titre */
+        text-align: center;
+    }
+
+    .searchBar input {
+        width: 80%; /* Réduit la largeur de la barre de recherche */
+        font-size: 1rem;
+        margin-top: 10px;
+    }
+
+    /* Cartes Pokémon */
+    .cards-container {
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(200px, 1fr)
+        ); /* Ajuste la grille pour plus de flexibilité */
+        gap: 15px; /* Réduit l'espace entre les cartes */
+        padding: 10px;
+    }
+
+    .pokemon_card {
+        width: auto; /* Permet aux cartes de s'adapter à la largeur disponible */
+        padding: 10px;
+        box-shadow: none; /* Simplifie l'apparence pour les écrans moyens */
+        border-radius: 8px;
+    }
+
+    .pokemon_img img {
+        width: 80px; /* Réduction de la taille des images des Pokémon */
+        height: auto;
+    }
+
+    .infos_card h4 {
+        font-size: 0.8rem; /* Ajuste la taille des sous-titres dans les cartes */
+        margin-bottom: 5px;
+    }
+
+    .pokemon_card-container {
+        width: 100% !important;
+    }
+    
+    /* Conteneur des statistiques et résistances */
+    .bloc_stats-container,
+    .bloc_resistances-container {
+        padding: 10px; /* Réduit le padding interne pour économiser de l'espace */
+        font-size: 0.9rem; /* Diminue légèrement la taille du texte */
+    }
+    
+    .stats-container.open,
+    .resistances-container.open {
+        max-height: none; /* Permet un affichage fluide sur ces tailles d'écran */
+        overflow-y: visible;
+        padding-top: 10px;
+    }
+    
+    /* Navigation ou autres éléments spécifiques (si applicable) */
+}
+
+/* Media query pour les écrans ≤ 450px */
+@media (max-width: 450px) {
+    /* Ajustement du conteneur principal */
+    .body-container {
+        max-width: 100%; /* Utilise toute la largeur disponible */
+        padding: 10px; /* Réduit les marges */
+        overflow-x: hidden; /* Empêche le débordement horizontal */
+        text-align: center; /* Centre le contenu */
+    }
+    
+    /* Header */
+    header .header-container {
+        flex-direction: column; /* Empile les éléments verticalement */
+        padding: 10px; /* Réduit l'espace autour du header */
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .logo-container img {
+        max-width: 80px; /* Réduction de la taille du logo */
+    }
+    
+    .title-container h1 {
+        font-size: 1.2rem; /* Ajuste la taille du titre */
+        margin: 5px 0;
+    }
+    
+    .searchBar input {
+        width: calc(100% - 20px); /* Barre de recherche adaptée à la largeur */
+        font-size: 0.9rem;
+        margin-top: 10px;
+    }
+    
+    /* Cartes Pokémon */
+    .cards-container {
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(150px, 1fr)
+            ); /* Plus petites colonnes */
+            gap: 10px; /* Réduit l'espace entre les cartes */
+            padding: 10px;
+        }
+        
+        .pokemon_card {
+            width: auto; /* Permet aux cartes de s'adapter à la largeur disponible */
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: none; /* Simplifie l'apparence pour petits écrans */
+            border: none;
+        }
+        
+        .pokemon_img img {
+            width: 70px; /* Réduction de la taille des images des Pokémon */
+            height: auto;
+        }
+        
+        .infos_card h4 {
+            font-size: 0.8rem; /* Ajuste la taille des sous-titres dans les cartes */
+            margin-bottom: 5px;
+        }
+        
+        .pokemon_card-container {
+            width: 100% !important;
+        }
+        /* Conteneur des statistiques et résistances */
+        .bloc_stats-container,
+        .bloc_resistances-container {
+            padding: 5px; /* Réduit le padding interne pour économiser de l'espace */
+        font-size: 0.8rem; /* Diminue légèrement la taille du texte */
+    }
+
+    .stats-container.open,
+    .resistances-container.open {
+        max-height: none; /* Permet un affichage fluide sur ces tailles d'écran */
+        overflow-y: visible;
+        padding-top: 5px;
+    }
+
+    /* Navigation ou autres éléments spécifiques (si applicable) */
+}
