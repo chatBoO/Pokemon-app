@@ -313,7 +313,7 @@ body {
                 }
             }
             .chevron {
-                transition: transform 0.8s ease; /* Animation de rotation */
+                transition: transform 0.5s ease; /* Animation de rotation */
             }
 
             .chevron.rotated {
@@ -326,7 +326,7 @@ body {
                 justify-content: space-between;
                 max-height: 0; /* Hauteur initiale fermée */
                 overflow: hidden; /* Cache le contenu lorsque fermé */
-                transition: max-height 1s ease;
+                transition: max-height 0.5s ease;
                 padding: 0;
             }
             .resistances-container.open {
