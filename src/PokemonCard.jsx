@@ -4,15 +4,17 @@ import loadingGif from "./assets/loader.gif";
 import chevron from "./assets/chevron.png";
 
 const PokemonCard = ({ pokemonList }) => {
-    const { id } = useParams();
-    const [activeType, setActiveType] = useState("Normal");
-    const [isStatsOpen, setIsStatsOpen] = useState(false);
-    const [isResistancesOpen, setResistancesOpen] = useState(false);
+    const { id } = useParams(); // Récupération de l'ID du Pokémon à partir des paramètres d'URL
+    const [activeType, setActiveType] = useState("Normal"); // État pour le type d'image affichée
+    const [isStatsOpen, setIsStatsOpen] = useState(false); // État pour l'affichage des statistiques
+    const [isResistancesOpen, setResistancesOpen] = useState(false); // État pour l'affichage des résistances
 
+    // Recherche du Pokémon actuel dans la liste par son identifiant
     const currentPokemon = pokemonList.find(
         (pokemon) => pokemon.pokedex_id.toString() === id
     );
 
+    // Affiche un gif de chargement si le Pokémon n'est pas trouvé
     if (!currentPokemon) {
         return (
             <div className="loading-gif">
@@ -21,6 +23,7 @@ const PokemonCard = ({ pokemonList }) => {
         );
     }
 
+    // Destructuration des propriétés du Pokémon actuel
     const {
         pokedex_id,
         name: { fr: name } = {},
@@ -35,7 +38,7 @@ const PokemonCard = ({ pokemonList }) => {
         talents = [],
     } = currentPokemon;
 
-    // Définition de renderImage
+    // Fonction pour rendre l'image du Pokémon en fonction du type actif
     const renderImage = () => {
         if (activeType === "Normal")
             return <img src={regular} alt="Image Pokémon" />;
@@ -56,15 +59,15 @@ const PokemonCard = ({ pokemonList }) => {
         return null;
     };
 
+    // Fonction pour déterminer le niveau d'évolution
     const getEvolutionLevel = (evolutionData) => {
         if (!evolutionData?.length) return "Base";
-        // else if (evolutionData?.length )
         return evolutionData.length < 2 ? "Niveau 1" : "Niveau 2";
     };
 
+    // Fonction pour rendre les évolutions du Pokémon
     const renderEvolutions = () => {
         const evolutionLevel = getEvolutionLevel(evolution?.pre);
-
         if (evolutionLevel === "Base") {
             return (
                 <>
@@ -74,8 +77,11 @@ const PokemonCard = ({ pokemonList }) => {
                                 pokemon.pokedex_id === nextEvo.pokedex_id
                         );
                         return (
-                            <Link to={`/card/${nextPokemon.pokedex_id}`}>
-                                <div key={index} className="evolution-item">
+                            <Link
+                                to={`/card/${nextPokemon.pokedex_id}`}
+                                key={index}
+                            >
+                                <div className="evolution-item">
                                     {nextPokemon && (
                                         <img
                                             src={nextPokemon.sprites.regular}
@@ -93,7 +99,6 @@ const PokemonCard = ({ pokemonList }) => {
                 </>
             );
         }
-
         if (evolutionLevel === "Niveau 1" || evolutionLevel === "Niveau 2") {
             return (
                 <>
@@ -103,8 +108,11 @@ const PokemonCard = ({ pokemonList }) => {
                                 pokemon.pokedex_id === preEvo.pokedex_id
                         );
                         return (
-                            <Link to={`/card/${prevPokemon.pokedex_id}`}>
-                                <div key={index} className="evolution-item">
+                            <Link
+                                to={`/card/${prevPokemon.pokedex_id}`}
+                                key={index}
+                            >
+                                <div className="evolution-item">
                                     {prevPokemon && (
                                         <img
                                             src={prevPokemon.sprites.regular}
@@ -127,8 +135,11 @@ const PokemonCard = ({ pokemonList }) => {
                                 pokemon.pokedex_id === nextEvo.pokedex_id
                         );
                         return (
-                            <Link to={`/card/${nextPokemon.pokedex_id}`}>
-                                <div key={index} className="evolution-item">
+                            <Link
+                                to={`/card/${nextPokemon.pokedex_id}`}
+                                key={index}
+                            >
+                                <div className="evolution-item">
                                     {nextPokemon && (
                                         <img
                                             src={nextPokemon.sprites.regular}
@@ -148,7 +159,6 @@ const PokemonCard = ({ pokemonList }) => {
                 </>
             );
         }
-
         return null;
     };
 
@@ -197,6 +207,8 @@ const PokemonCard = ({ pokemonList }) => {
                         </figcaption>
                     </figure>
                 </div>
+
+                {/* Talents du Pokémon */}
                 {Array.isArray(talents) && talents.length > 0 && (
                     <div className="talents-container">
                         <h4>Talents :</h4>
@@ -208,15 +220,16 @@ const PokemonCard = ({ pokemonList }) => {
 
                 {/* Statistiques */}
                 <div className="bloc_stats-container">
+                    {/* Titre des statistiques avec toggle pour afficher/masquer */}
                     <div
                         className="stats_title-container"
-                        onClick={() => setIsStatsOpen(!isStatsOpen)} // Toggle ouverture
+                        onClick={() => setIsStatsOpen(!isStatsOpen)}
                     >
                         <h4>Statistiques :</h4>
                         <span
                             className={`chevron ${
                                 isStatsOpen ? "rotated" : ""
-                            }`} // Classe conditionnelle
+                            }`}
                         >
                             <img
                                 src={chevron}
@@ -225,42 +238,46 @@ const PokemonCard = ({ pokemonList }) => {
                             />
                         </span>
                     </div>
-                    {/* Affichage conditionnel du bloc */}
+
+                    {/* Affichage conditionnel des statistiques */}
                     <div
                         className={`stats-container ${
                             isStatsOpen ? "open" : ""
                         }`}
                     >
+                        {/* Bloc des statistiques principales */}
                         <div className="bloc">
-                            <span> PV : {stats?.hp || "/"}</span>
-                            <span> Attaque : {stats?.atk || "/"}</span>
-                            <span> Défense : {stats?.def || "/"}</span>
+                            <span>PV : {stats?.hp || "/"}</span>
+                            <span>Attaque : {stats?.atk || "/"}</span>
+                            <span>Défense : {stats?.def || "/"}</span>
                         </div>
+
+                        {/* Bloc des statistiques spéciales */}
                         <div className="bloc">
                             <span>
-                                {" "}
-                                Attaque spéciale : {stats?.spe_atk || "/"}{" "}
+                                Attaque spéciale : {stats?.spe_atk || "/"}
                             </span>
                             <span>
-                                {" "}
-                                Défense spéciale : {stats?.spe_def || "/"}{" "}
+                                Défense spéciale : {stats?.spe_def || "/"}
                             </span>
-                            <span> Vitesse : {stats?.vit || "/"}</span>
+                            <span>Vitesse : {stats?.vit || "/"}</span>
                         </div>
                     </div>
                 </div>
 
                 {/* Resistances */}
+                {/* Titre des résistances avec toggle pour afficher/masquer */}
                 <div className="bloc_resistances-container">
+                    {/* Titre des résistances avec toggle pour afficher/masquer */}
                     <div
                         className="resistances_title-container"
-                        onClick={() => setResistancesOpen(!isResistancesOpen)} // Toggle ouverture
+                        onClick={() => setResistancesOpen(!isResistancesOpen)}
                     >
-                        <h4>Resistances :</h4>
+                        <h4>Résistances :</h4>
                         <span
                             className={`chevron ${
                                 isResistancesOpen ? "rotated" : ""
-                            }`} // Classe conditionnelle
+                            }`}
                         >
                             <img
                                 src={chevron}
@@ -269,7 +286,8 @@ const PokemonCard = ({ pokemonList }) => {
                             />
                         </span>
                     </div>
-                    {/* Affichage conditionnel du bloc */}
+
+                    {/* Affichage conditionnel des résistances */}
                     <div
                         className={`resistances-container ${
                             isResistancesOpen ? "open" : ""
@@ -300,6 +318,8 @@ const PokemonCard = ({ pokemonList }) => {
                         </div>
                     </div>
                 </div>
+
+                {/* Evolutions du Pokémon */}
                 <div className="evolutions-container">
                     <div className="evolutions_content">
                         <h4>Evolutions :</h4>
@@ -310,5 +330,4 @@ const PokemonCard = ({ pokemonList }) => {
         </main>
     );
 };
-
 export default PokemonCard;
